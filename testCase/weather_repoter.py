@@ -3,7 +3,6 @@ from comments.log import Logger
 from comments.read_xls import Read_xls_file
 import unittest
 import requests
-import json
 
 logger = Logger(logger='weather_repoter').getlog()
 
@@ -23,7 +22,7 @@ class Get_weather_repoter(unittest.TestCase):
 
     def test_get_weather(self):
         result = requests.get(self.url,params=self.data)
-        print(result.json())
+        self.assertEqual(result.status_code,200,msg='status_code error')
 
 if __name__ == '__main__':
     unittest.main()
